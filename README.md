@@ -1,2 +1,2 @@
 # Can-It-Run-Game
-asdawdaw
+Gavur gibi çalişiyür
