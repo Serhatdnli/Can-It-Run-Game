@@ -7,6 +7,9 @@ TagManager:
   - Ground
   - Block
   - Plume
+  - big
+  - small
+  - lucky
   layers:
   - Default
   - TransparentFX
@@ -18,9 +21,9 @@ TagManager:
   - 
   - Ground
   - Player
-  - 
-  - 
-  - 
+  - big
+  - small
+  - lucky
   - 
   - 
   - 
