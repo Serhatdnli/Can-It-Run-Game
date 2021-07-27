@@ -29,28 +29,7 @@ public class PlayerController : MonoBehaviour
          
     }
 
-    private void OnTriggerEnter(Collider other) {
-        if(other.gameObject.CompareTag("big")){
-            print("big");
-            transform.localScale = new Vector3(transform.localScale.x * 2f,transform.localScale.y * 2f,transform.localScale.z * 2f);
-            Destroy(other.gameObject);
-        } 
-        if(other.gameObject.CompareTag("small")){
-            print("small");
-            transform.localScale = new Vector3(transform.localScale.x / 2f,transform.localScale.y / 2f,transform.localScale.z / 2f);
-            Destroy(other.gameObject);
-        }
-        if(other.gameObject.CompareTag("lucky")){
-            print("lucky");
-            int rnd = Random.Range(0,2);
-            if(rnd == 0){
-                transform.localScale = new Vector3(transform.localScale.x / 3f,transform.localScale.y / 3f,transform.localScale.z / 3f);
-            }else{
-                transform.localScale = new Vector3(transform.localScale.x * 3f,transform.localScale.y * 3f,transform.localScale.z * 3f);
-            }
-            Destroy(other.gameObject);
-        }
-    }
+
 
     private void InputControl(){
         if (Input.GetMouseButtonDown (0)) {         // Ekrana dokunulduğu anda
