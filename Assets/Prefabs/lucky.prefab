@@ -167,8 +167,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1227861432946658032}
-  - component: {fileID: 1227861432946658039}
   - component: {fileID: 1227861432946658038}
+  - component: {fileID: 751912342543848798}
   m_Layer: 0
   m_Name: lucky
   m_TagString: lucky
@@ -192,20 +192,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!64 &1227861432946658039
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1227861432946658037}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -9208689491095197848, guid: ef92bb1dbb9d01948800f8a9c481a010, type: 3}
 --- !u!114 &1227861432946658038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,3 +208,16 @@ MonoBehaviour:
   hizAzaltma: 0.5
   buyutmeKatsayisi: 1.4
   kucultmeKatsayisi: 1.3
+--- !u!65 &751912342543848798
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1227861432946658037}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 22.77, y: 31.54, z: 1}
+  m_Center: {x: 0, y: 7.3, z: 0}

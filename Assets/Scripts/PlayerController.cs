@@ -9,8 +9,11 @@ public class PlayerController : MonoBehaviour
     public static PlayerController instance;
 
     [SerializeField] private Camera ortho;
+
     [SerializeField] private LayerMask layerMask;
+
     [SerializeField] private Transform groundCheck;
+
     [SerializeField] private float forwardSpeed, sensivity, radiusGroundCheck, HorizontalPower;
 
     private Animator animator;
@@ -31,9 +34,12 @@ public class PlayerController : MonoBehaviour
         set { forwardSpeed = value; }
     }
 
-
+    private void Awake()
+    {
+        instance = this;
+    }
     void Start()
-    {   instance = this;
+    {
         animator = GetComponent<Animator>();
         body = GetComponent<Rigidbody>();
     }
@@ -42,7 +48,6 @@ public class PlayerController : MonoBehaviour
         GroundCheck();          //zemin teması kontrol
         InputControl();             // Input kontrolleri    
     }
-
 
 
     private void InputControl()
@@ -80,15 +85,10 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (diff.x != 0 || diff.y != 0)
-        {
-            print(diff.x + "  " +  diff.y);
-        }
 
         body.velocity = Vector3.Lerp(body.velocity, new Vector3(diff.x, body.velocity.y, ForwardSpeed), .1f);
-        if (animator.GetBool("onGround") && 100 < coolDown && diff.y > 3f && Math.Abs(diff.x) < Math.Abs(diff.y))
+        if (animator.GetBool("onGround") && 50 < coolDown && diff.y > 3f && Math.Abs(diff.x) < Math.Abs(diff.y))
         {
-            print("zıpladık");
             animator.SetBool("isJump", true);
             body.velocity = new Vector3(0f, 1f, 0f) * 6f;
             coolDown = 0;
@@ -118,7 +118,8 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("isDown", false);
     }
 
-    private void OnTriggerEnter(Collider other) {
+    private void OnTriggerEnter(Collider other)
+    {
         other.gameObject.GetComponent<ITouchControl>()?.Touched(gameObject);
     }
 }

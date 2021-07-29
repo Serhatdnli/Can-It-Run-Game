@@ -11,9 +11,12 @@ public class PlumeController : MonoBehaviour
     
     [SerializeField] private float DistanceFirstAndSecond;
     private int number,plumeIndex;
-    void Start()
+    private void Awake()
     {
         instance = this;
+    }
+    void Start()
+    {
         playerFirstPos = player.transform.position.z - DistanceFirstAndSecond;      // player first pos direk tüy çıksın diye geriye ayarlandı
     }
 
@@ -51,11 +54,6 @@ public class PlumeController : MonoBehaviour
                 createPlume(randPlume,pos);  
                 playerFirstPos = player.gameObject.transform.position.z;
             }
-           
-
-
-
-
 
         }
     }
