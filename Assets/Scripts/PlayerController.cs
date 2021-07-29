@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Camera ortho;
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private Transform groundCheck;
-    [SerializeField] private float forwardSpeed, sensitivity, radiusGroundCheck, HorizontalPower;
+    [SerializeField] private float forwardSpeed, sensivity, radiusGroundCheck, HorizontalPower;
 
     private Animator animator;
 
@@ -68,7 +69,7 @@ public class PlayerController : MonoBehaviour
     {
         mousePos = ortho.ScreenToWorldPoint(inputPos);
         diff = mousePos - firstPos;
-        diff *= sensitivity;
+        diff *= sensivity;
     }
 
     private void MouseUp()
@@ -79,21 +80,23 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-       /* if (diff.x != 0 || diff.y != 0)
+        if (diff.x != 0 || diff.y != 0)
         {
-            print(diff.x + diff.y);
-        }*/
+            print(diff.x + "  " +  diff.y);
+        }
 
         body.velocity = Vector3.Lerp(body.velocity, new Vector3(diff.x, body.velocity.y, ForwardSpeed), .1f);
-        if (animator.GetBool("onGround") && 100 < coolDown && diff.y > 4f && diff.x < diff.y)
+        if (animator.GetBool("onGround") && 100 < coolDown && diff.y > 3f && Math.Abs(diff.x) < Math.Abs(diff.y))
         {
+            print("zıpladık");
             animator.SetBool("isJump", true);
             body.velocity = new Vector3(0f, 1f, 0f) * 6f;
             coolDown = 0;
 
         }
-        else if (diff.y < 4f && diff.x < diff.y)
+        else if (diff.y < -3f && Math.Abs(diff.x) < Math.Abs(diff.y))
         {            // eğil
+            print("eğildik");
             animator.SetBool("isDown", true);
             Invoke("setAllAnimatorVal", 1f);
         }

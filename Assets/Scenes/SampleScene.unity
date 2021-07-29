@@ -1385,7 +1385,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   groundCheck: {fileID: 1291806404}
-  forwardSpeed: 100
-  sensitivity: 1
+  forwardSpeed: 50
+  sensivity: 1.5
   radiusGroundCheck: 0.1
   HorizontalPower: 0.1
