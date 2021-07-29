@@ -4,105 +4,78 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
-    [SerializeField] private Camera ortho;
+    private Animator animator;
+    private Rigidbody rb;
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private Transform groundCheck;
-    [SerializeField] private float forwardSpeed, sensitivity, radiusGroundCheck, HorizontalPower;
-    private Animator animator;
-
-    private Rigidbody body;
-
-    private Vector3 diff;
-
-    private Vector3 firstPos;
-
-    private Vector3 mousePos;
-
+    [SerializeField] private float speed,power,radiusGroundCheck,HorizontalPower;
     private float coolDown;
-
-
+    private Vector2 firstPressPos, secondPressPos,currentSwipe;
+    private Vector3 lastPosition;
     void Start()
     {
+        lastPosition = transform.position;
         animator = GetComponent<Animator>();
-        body = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
+        firstPressPos = new Vector2(0,0);
     }
     void Update()
     {
+        
         GroundCheck();          //zemin teması kontrol
-        InputControl();             // Input kontrolleri    
+        InputControl();             // Input kontrolleri
+
+        
+         
     }
 
 
 
-    private void InputControl()
-    {
-        firstPos = Vector3.Lerp(firstPos, mousePos, .1f);
-
-        if (Input.GetMouseButtonDown(0))
-            MouseDown(Input.mousePosition);
-
-        else if (Input.GetMouseButtonUp(0))
-            MouseUp();
-
-        else if (Input.GetMouseButton(0))
-            MouseHold(Input.mousePosition);
-    }
-
-    private void MouseDown(Vector3 inputPos)
-    {
-        mousePos = ortho.ScreenToWorldPoint(inputPos);
-        firstPos = mousePos;
-    }
-
-    private void MouseHold(Vector3 inputPos)
-    {
-        mousePos = ortho.ScreenToWorldPoint(inputPos);
-        diff = mousePos - firstPos;
-        diff *= sensitivity;
-    }
-
-    private void MouseUp()
-    {
-        diff = Vector3.zero;
+    private void InputControl(){
+        if (Input.GetMouseButtonDown (0)) {         // Ekrana dokunulduğu anda
+                    firstPressPos.x = Input.mousePosition.x;        // ilk x
+                    firstPressPos.y = Input.mousePosition.y;            // ilk y
+                }
+                if(Input.GetMouseButton(0)){
+                    secondPressPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+                    currentSwipe = new Vector2(secondPressPos.x - firstPressPos.x, secondPressPos.y - firstPressPos.y);
+                }
+                if (Input.GetMouseButtonUp (0)) {           // Ekranı bırakma anı
+                    currentSwipe = Vector2.zero;
+                    secondPressPos = Vector2.zero;
+                }
+                if(currentSwipe.y >100 && coolDown > 100){
+                    animator.SetBool("isJump",true);
+            } 
     }
 
 
-    private void FixedUpdate()
-    {
-        if (diff.x != 0 || diff.y != 0)
-        {
-            print(diff.x + diff.y);
+    private void FixedUpdate() { 
+        rb.velocity = Vector3.forward * Time.deltaTime * speed;       
+        if(currentSwipe.x != 0){
+            rb.velocity = new Vector3((0.02f*currentSwipe.x),rb.velocity.y,rb.velocity.z);         // sağa ya da sola git
         }
-
-        body.velocity = Vector3.Lerp(body.velocity, new Vector3(diff.x, body.velocity.y, forwardSpeed), .1f);
-        if (animator.GetBool("onGround") && 100 < coolDown && diff.y > 4f && diff.x < diff.y)
-        {
-            animator.SetBool("isJump", true);
-            body.velocity = new Vector3(0f, 1f, 0f) * 6f;
+        
+        if(animator.GetBool("onGround") && 100 < coolDown && animator.GetBool("isJump")){       // zıpla
+            rb.velocity = new Vector3(0f,1f,0f) * power;
             coolDown = 0;
-
-        }
-        else if (diff.y < 4f && diff.x < diff.y)
-        {            // eğil
-            animator.SetBool("isDown", true);
-            Invoke("setAllAnimatorVal", 1f);
+            
+        }else if(currentSwipe.y < -20f){            // eğil
+            animator.SetBool("isDown",true);
+            Invoke("setAllAnimatorVal",1f);
         }
         coolDown++;
 
     }
 
-    public void GroundCheck()
-    { // zemin kontrolü
-        animator.SetBool("onGround", Physics.CheckSphere(groundCheck.position, radiusGroundCheck, layerMask));
-        if (Physics.CheckSphere(groundCheck.position, radiusGroundCheck, layerMask))
-        {
-            animator.SetBool("isJump", false);
+    public void GroundCheck(){ // zemin kontrolü
+        animator.SetBool("onGround",Physics.CheckSphere(groundCheck.position,radiusGroundCheck,layerMask));
+        if(Physics.CheckSphere(groundCheck.position,radiusGroundCheck,layerMask)){
+            animator.SetBool("isJump",false);
         }
     }
 
-    private void setAllAnimatorVal()
-    {
-        animator.SetBool("isDown", false);
+    private void setAllAnimatorVal(){
+        animator.SetBool("isDown",false);
     }
 }
