@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlumeController : MonoBehaviour
 {
+    public static PlumeController instance;
     [SerializeField] GameObject big,small,fast,slow,lucky,player;
     private GameObject randPlume;
     private float playerFirstPos,plumePosX,plumePosZ;
@@ -12,6 +13,7 @@ public class PlumeController : MonoBehaviour
     private int number,plumeIndex;
     void Start()
     {
+        instance = this;
         playerFirstPos = player.transform.position.z - DistanceFirstAndSecond;      // player first pos direk tüy çıksın diye geriye ayarlandı
     }
 
