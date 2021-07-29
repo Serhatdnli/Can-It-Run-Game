@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bca20ba9c1df19439449fed40257b8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hizAzaltma: 2
+  hizAzaltma: 0.5
 --- !u!1 &3027911237267870754
 GameObject:
   m_ObjectHideFlags: 0

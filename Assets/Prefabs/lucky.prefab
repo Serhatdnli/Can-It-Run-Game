@@ -219,6 +219,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hizArtirma: 2
-  hizAzaltma: 2
-  buyutmeKatsayisi: 2
-  kucultmeKatsayisi: 2
+  hizAzaltma: 0.5
+  buyutmeKatsayisi: 1.4
+  kucultmeKatsayisi: 1.3

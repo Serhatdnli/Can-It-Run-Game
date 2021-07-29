@@ -12,10 +12,7 @@ public class PlumeFast : MonoBehaviour, ITouchControl
     }
 
     public void Touched(GameObject player){
-        
         Destroy(gameObject);
-        print("Fast : " + PlayerController.instance.ForwardSpeed); 
         PlayerController.instance.ForwardSpeed += hizArtirma;   
-        print("Fast : " + PlayerController.instance.ForwardSpeed);
     }
 }

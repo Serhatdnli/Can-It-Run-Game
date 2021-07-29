@@ -8,7 +8,6 @@ public class PlumeBig : MonoBehaviour , ITouchControl
     void Start()
     {
         transform.Rotate(0,180,0);
-        
     }
 
     public void Touched(GameObject player){
