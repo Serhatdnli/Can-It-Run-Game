@@ -5,29 +5,37 @@ using UnityEngine;
 public class PlumeController : MonoBehaviour
 {
     public static PlumeController instance;
-    [SerializeField] GameObject big,small,fast,slow,lucky,player;
-    private GameObject randPlume;
-    private float playerFirstPos,plumePosX,plumePosZ;
-    
+
+    [SerializeField] GameObject big, small, fast, slow, lucky, player;
+
     [SerializeField] private float DistanceFirstAndSecond;
-    private int number,plumeIndex;
+
+    private GameObject randPlume;
+
+    private float playerFirstPos, plumePosX, plumePosZ, lastPlums;
+
+    private int number, plumeIndex;
+
     private void Awake()
     {
         instance = this;
     }
     void Start()
     {
-        playerFirstPos = player.transform.position.z - DistanceFirstAndSecond;      // player first pos direk tüy çıksın diye geriye ayarlandı
+        plumePosZ = transform.position.z;      // player first pos direk tüy çıksın diye geriye ayarlandı
     }
 
-    private void Update() {
-        if(player.transform.position.z - playerFirstPos > DistanceFirstAndSecond){   // eğer karakterin z si ilk pozisyonundan belirli mesafe uzaklaşırsa
-           
-            number = Random.Range(3,7);         // kaç adet tüy üretileceği
-            
-            for(int numberCount = 0; numberCount < number; numberCount++){          // o kadar adet üret
-                plumeIndex = Random.Range(0,5);     // hangi tüy indexinden üretileceği
-                switch (plumeIndex)         
+    private void Update()
+    {
+        if (player.transform.position.z + 100f >= plumePosZ)
+        {   // eğer karakterin z si ilk pozisyonundan belirli mesafe uzaklaşırsa
+
+            number = Random.Range(3, 7);         // kaç adet tüy üretileceği
+
+            for (int numberCount = 0; numberCount < number; numberCount++)
+            {          // o kadar adet üret
+                plumeIndex = Random.Range(0, 5);     // hangi tüy indexinden üretileceği
+                switch (plumeIndex)
                 {
                     case 0:         // plumeIndexe göre üret
                         randPlume = big;
@@ -45,20 +53,19 @@ public class PlumeController : MonoBehaviour
                         randPlume = lucky;
                         break;
                 }
-                
-                plumePosX = Random.Range(-3,4);
-                // tüyün X aralığı
-                plumePosZ = Random.Range(player.transform.position.z + 3f, player.transform.position.z + DistanceFirstAndSecond);
-                // tüyün Z aralığı
-                Vector3 pos = new Vector3(plumePosX,1,plumePosZ);
-                createPlume(randPlume,pos);  
-                playerFirstPos = player.gameObject.transform.position.z;
+
+                plumePosX = Random.Range(-5f, 5f);
+                plumePosZ += 10f;
+                Vector3 pos = new Vector3(plumePosX, 1, plumePosZ);
+                createPlume(randPlume, pos);
             }
 
         }
     }
-    // Update is called once per frame
-    private void createPlume(GameObject plume,Vector3 pos){
+
+
+    private void createPlume(GameObject plume, Vector3 pos)
+    {
         Instantiate(plume, pos, Quaternion.identity);
     }
 }

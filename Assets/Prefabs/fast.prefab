@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 4058659532135540945}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: -13.16, y: 99.03, z: 0}
-  m_LocalScale: {x: 22, y: 22, z: 22}
+  m_LocalScale: {x: 15, y: 15, z: 15}
   m_Children: []
   m_Father: {fileID: 7705319329801413398}
   m_RootOrder: 2
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9158d0c7fdc56584fa7ae78b0a344949, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.86513233, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -208,6 +208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hizArtirma: 2
+  spriteRenderer: {fileID: 6322910645159608015}
 --- !u!65 &-2173132925155208069
 BoxCollider:
   m_ObjectHideFlags: 0

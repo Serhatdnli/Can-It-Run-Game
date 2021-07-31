@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface ITouchControl
 {
-    void Touched(GameObject gameObject);
+    void Touched();
 }

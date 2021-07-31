@@ -67,6 +67,7 @@ public class PlayerController : MonoBehaviour
 
     private void MouseDown(Vector3 inputPos)
     {
+
         mousePos = ortho.ScreenToWorldPoint(inputPos);
         firstPos = mousePos;
     }
@@ -81,6 +82,7 @@ public class PlayerController : MonoBehaviour
     private void MouseUp()
     {
         diff = Vector3.zero;
+
     }
 
 
@@ -122,6 +124,6 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        other.gameObject.GetComponent<ITouchControl>()?.Touched(gameObject);
+        other.gameObject.GetComponent<ITouchControl>()?.Touched();
     }
 }
