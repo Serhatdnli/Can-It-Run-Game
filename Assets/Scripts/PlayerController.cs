@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using DG.Tweening;
 
 public class PlayerController : MonoBehaviour
 {
@@ -87,6 +88,7 @@ public class PlayerController : MonoBehaviour
     {
 
         body.velocity = Vector3.Lerp(body.velocity, new Vector3(diff.x, body.velocity.y, ForwardSpeed), .1f);
+        transform.DOLocalRotate(new Vector3(0f, diff.x * 5f, 0f), 0.5f);
         if (animator.GetBool("onGround") && 50 < coolDown && diff.y > 3f && Math.Abs(diff.x) < Math.Abs(diff.y))
         {
             animator.SetBool("isJump", true);
