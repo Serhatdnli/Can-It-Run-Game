@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class PlumeSmall : MonoBehaviour, ITouchControl
 {
@@ -15,7 +16,6 @@ public class PlumeSmall : MonoBehaviour, ITouchControl
 
     public void Touched(GameObject player){
         Destroy(gameObject);
-        player.gameObject.transform.localScale = new Vector3( player.gameObject.transform.localScale.x / kucultmeKatsayisi, player.gameObject.transform.localScale.y / kucultmeKatsayisi, player.gameObject.transform.localScale.z / kucultmeKatsayisi);
-           
+        player.gameObject.transform.DOScale(new Vector3(player.gameObject.transform.localScale.x - 2f, player.gameObject.transform.localScale.y - 2f, player.gameObject.transform.localScale.z - 2f), 0.5f);
     }
 }

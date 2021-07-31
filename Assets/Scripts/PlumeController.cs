@@ -50,7 +50,7 @@ public class PlumeController : MonoBehaviour
                 // tüyün X aralığı
                 plumePosZ = Random.Range(player.transform.position.z + 3f, player.transform.position.z + DistanceFirstAndSecond);
                 // tüyün Z aralığı
-                Vector3 pos = new Vector3(plumePosX,player.transform.position.y,plumePosZ);
+                Vector3 pos = new Vector3(plumePosX,1,plumePosZ);
                 createPlume(randPlume,pos);  
                 playerFirstPos = player.gameObject.transform.position.z;
             }
