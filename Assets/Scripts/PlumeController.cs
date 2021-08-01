@@ -6,7 +6,7 @@ public class PlumeController : MonoBehaviour
 {
     public static PlumeController instance;
 
-    [SerializeField] GameObject big, small, fast, slow, lucky, player;
+    [SerializeField] GameObject increase, subtract, fast, slow, lucky, player;
 
     [SerializeField] private float DistanceFirstAndSecond;
 
@@ -38,10 +38,10 @@ public class PlumeController : MonoBehaviour
                 switch (plumeIndex)
                 {
                     case 0:         // plumeIndexe göre üret
-                        randPlume = big;
+                        randPlume = increase;
                         break;
                     case 1:
-                        randPlume = small;
+                        randPlume = subtract;
                         break;
                     case 2:
                         randPlume = fast;

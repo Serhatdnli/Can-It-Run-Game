@@ -8,7 +8,7 @@ using DG.Tweening;
 public class CanvasManager : MonoBehaviour
 {
     public static CanvasManager instance;
-    [SerializeField] private Text diamondScoreText;
+    [SerializeField] private Text diamondScoreText, plumeScoreText;
 
     [SerializeField] private GameObject deadScene;
 
@@ -29,6 +29,11 @@ public class CanvasManager : MonoBehaviour
         if (diamondScoreText.text != gameManager.DiamondCount.ToString())
         {
             diamondScoreText.text = gameManager.DiamondCount.ToString();
+        }
+
+        if (plumeScoreText.text != gameManager.PlumeCount.ToString())
+        {
+            plumeScoreText.text = gameManager.PlumeCount.ToString();
         }
     }
 

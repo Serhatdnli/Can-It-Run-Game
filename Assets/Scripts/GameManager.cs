@@ -6,9 +6,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    private int score, diamondCount,bestScore;
+    private int plumeCount, diamondCount,bestScore;
 
-    public int Score { get => score; set => score = value; }
+    public int PlumeCount { get => plumeCount; set => plumeCount = value; }
     public int DiamondCount { get => diamondCount; set => diamondCount = value; }
     public int BestScore { get => bestScore; set => bestScore = value; }
 
@@ -17,7 +17,9 @@ public class GameManager : MonoBehaviour
     {
         instance = this;
         diamondCount = PlayerPrefs.GetInt("Diamonds");
+        plumeCount = PlayerPrefs.GetInt("Plumes");
     }
+
     void Start()
     {
         
