@@ -12,7 +12,7 @@ public class PlumeController : MonoBehaviour
 
     private GameObject randPlume;
 
-    private float playerFirstPos, plumePosX, plumePosZ, lastPlums;
+    private float playerFirstPos, plumePosX, plumePosZ, lastPlums, plumePosY;
 
     private int number, plumeIndex;
 
@@ -39,24 +39,29 @@ public class PlumeController : MonoBehaviour
                 {
                     case 0:         // plumeIndexe göre üret
                         randPlume = increase;
+                        plumePosY = 1;
                         break;
                     case 1:
                         randPlume = subtract;
+                        plumePosY = 1;
                         break;
                     case 2:
                         randPlume = fast;
+                        plumePosY = 2.5f;
                         break;
                     case 3:
                         randPlume = slow;
+                        plumePosY = 2.5f;
                         break;
                     default:
                         randPlume = lucky;
+                        plumePosY = 1;
                         break;
                 }
 
                 plumePosX = Random.Range(-5f, 5f);
                 plumePosZ += 10f;
-                Vector3 pos = new Vector3(plumePosX, 1, plumePosZ);
+                Vector3 pos = new Vector3(plumePosX, plumePosY, plumePosZ);
                 createPlume(randPlume, pos);
             }
 
