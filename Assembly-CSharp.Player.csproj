@@ -57,19 +57,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CameraController.cs" />
-    <Compile Include="Assets\Scripts\CanvasManager.cs" />
     <Compile Include="Assets\Scripts\DiamondController.cs" />
-    <Compile Include="Assets\Scripts\FinishLine.cs" />
+    <Compile Include="Assets\Scripts\Factories\CanvasManager.cs" />
+    <Compile Include="Assets\Scripts\Factories\PlumeController.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\PlumeAndDiamond\Diamond.cs" />
-    <Compile Include="Assets\Scripts\PlumeAndDiamond\Fast.cs" />
-    <Compile Include="Assets\Scripts\PlumeAndDiamond\ITouchControl.cs" />
-    <Compile Include="Assets\Scripts\PlumeAndDiamond\PlumeIncrease.cs" />
-    <Compile Include="Assets\Scripts\PlumeAndDiamond\PlumeLucky.cs" />
-    <Compile Include="Assets\Scripts\PlumeAndDiamond\PlumeSubtract.cs" />
-    <Compile Include="Assets\Scripts\PlumeAndDiamond\Slow.cs" />
-    <Compile Include="Assets\Scripts\PlumeController.cs" />
+    <Compile Include="Assets\Scripts\TouchedObjects\Diamond.cs" />
+    <Compile Include="Assets\Scripts\TouchedObjects\Fast.cs" />
+    <Compile Include="Assets\Scripts\TouchedObjects\FinishLine.cs" />
+    <Compile Include="Assets\Scripts\TouchedObjects\ITouchControl.cs" />
+    <Compile Include="Assets\Scripts\TouchedObjects\PlumeIncrease.cs" />
+    <Compile Include="Assets\Scripts\TouchedObjects\PlumeSubtract.cs" />
+    <Compile Include="Assets\Scripts\TouchedObjects\Slow.cs" />
+    <Compile Include="Assets\Scripts\TouchedObjects\SurprizBox.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
