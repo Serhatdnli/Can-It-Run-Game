@@ -60,6 +60,7 @@
     <Compile Include="Assets\Scripts\DiamondController.cs" />
     <Compile Include="Assets\Scripts\Factories\CanvasManager.cs" />
     <Compile Include="Assets\Scripts\Factories\PlumeController.cs" />
+    <Compile Include="Assets\Scripts\FarmerController.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\TouchedObjects\Diamond.cs" />

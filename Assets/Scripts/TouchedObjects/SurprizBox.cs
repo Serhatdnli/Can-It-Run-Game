@@ -59,7 +59,7 @@ public class SurprizBox : MonoBehaviour, ITouchControl
 
                 int elmasGelmeOranlari = Random.Range(0, 100);          // oranları dağıtmak için değişken
                 position = new Vector3(transform.position.x, transform.position.y, transform.position.z);                               // toplu üretilecek elmasların konumu kutu çine ayarlandı
-                int uretilecekElmasSayisi, goruntuUretilecekElmas;
+                int uretilecekElmasSayisi;
 
                 if (elmasGelmeOranlari > 90)         // değişkenin yüksek olmasına göre elmas üretim oranı ayarlandı
                 {

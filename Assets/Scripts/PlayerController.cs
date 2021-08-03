@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float forwardSpeed, sensivity, radiusGroundCheck, HorizontalPower;
 
-    private Animator animator;
+    private Animator anim;
 
     private Rigidbody body;
 
@@ -28,6 +28,12 @@ public class PlayerController : MonoBehaviour
     private Vector3 mousePos;
 
     private float coolDown;
+
+    public Animator Anim    // property
+    {
+        get { return anim; }
+        set { anim = value; }
+    }
 
     public float ForwardSpeed   // property
     {
@@ -41,7 +47,7 @@ public class PlayerController : MonoBehaviour
     }
     void Start()
     {
-        animator = GetComponent<Animator>();
+        Anim = GetComponent<Animator>();
         body = GetComponent<Rigidbody>();
     }
     void Update()
@@ -91,17 +97,16 @@ public class PlayerController : MonoBehaviour
 
         body.velocity = Vector3.Lerp(body.velocity, new Vector3(diff.x, body.velocity.y, ForwardSpeed), .1f);
         transform.DOLocalRotate(new Vector3(0f, diff.x * 5f, 0f), 0.5f);
-        if (animator.GetBool("onGround") && 50 < coolDown && diff.y > 3f && Math.Abs(diff.x) < Math.Abs(diff.y))
+        if (Anim.GetBool("onGround") && 50 < coolDown && diff.y > 3f && Math.Abs(diff.x) < Math.Abs(diff.y))
         {
-            animator.SetBool("isJump", true);
+            Anim.SetBool("isJump", true);
             body.velocity = new Vector3(0f, 1f, 0f) * 6f;
             coolDown = 0;
 
         }
         else if (diff.y < -3f && Math.Abs(diff.x) < Math.Abs(diff.y))
         {            // eğil
-            print("eğildik");
-            animator.SetBool("isDown", true);
+            Anim.SetBool("isDown", true);
             Invoke("setAllAnimatorVal", 1f);
         }
         coolDown++;
@@ -110,16 +115,16 @@ public class PlayerController : MonoBehaviour
 
     public void GroundCheck()
     { // zemin kontrolü
-        animator.SetBool("onGround", Physics.CheckSphere(groundCheck.position, radiusGroundCheck, layerMask));
+        Anim.SetBool("onGround", Physics.CheckSphere(groundCheck.position, radiusGroundCheck, layerMask));
         if (Physics.CheckSphere(groundCheck.position, radiusGroundCheck, layerMask))
         {
-            animator.SetBool("isJump", false);
+            Anim.SetBool("isJump", false);
         }
     }
 
     private void setAllAnimatorVal()
     {
-        animator.SetBool("isDown", false);
+        Anim.SetBool("isDown", false);
     }
 
     private void OnTriggerEnter(Collider other)
